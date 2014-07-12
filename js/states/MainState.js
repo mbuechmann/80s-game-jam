@@ -9,6 +9,8 @@ var mainState = function (game) {
     var lampViewLeft = null;
     var lampViewRight = null;
 
+    var leftPlayer = new Player();
+    var rightPlater = new Player();
 
     this.preload = function () {
         game.load.image('board-tile', 'images/board/tile.png');
@@ -29,8 +31,8 @@ var mainState = function (game) {
         boardView = new BoardView(game, 116, BOARD_TOP, PADDING);
 
         for (var i = 0; i < 5; i++) {
-            homesViewsLeft.push(new HomeView(game, 20, BOARD_TOP + i * (64 + PADDING), false));
-            homesViewsRight.push(new HomeView(game, 616, BOARD_TOP + i * (64 + PADDING), true));
+            homesViewsLeft.push(new HomeView(game, 20, BOARD_TOP + i * (64 + PADDING), false, leftPlayer.homes[i]));
+            homesViewsRight.push(new HomeView(game, 616, BOARD_TOP + i * (64 + PADDING), true, rightPlater.homes[i]));
         }
 
         lampViewLeft = new LampView(game, 10, 20);
@@ -38,6 +40,11 @@ var mainState = function (game) {
     };
 
     this.update = function () {
-
+        for (var i in homesViewsLeft) {
+            homesViewsLeft[i].update();
+        }
+        for (var i in homesViewsRight) {
+            homesViewsRight[i].update();
+        }
     };
 };

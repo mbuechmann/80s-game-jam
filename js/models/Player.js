@@ -38,13 +38,13 @@ var Player = function () {
     this.up = function () {
         currentSelection -= 1;
         currentSelection = Math.max(-1, currentSelection);
-        selectHome(currentSelection);
+        setSelection(currentSelection);
     };
 
     this.down = function () {
         currentSelection += 1;
         currentSelection = Math.min(4, currentSelection);
-        selectHome(currentSelection);
+        setSelection(currentSelection);
     };
 
     this.left = function () {
@@ -54,5 +54,8 @@ var Player = function () {
     };
 
     this.action = function () {
+        if(currentSelection > -1) {
+            homes[currentSelection].action();
+        }
     };
 };

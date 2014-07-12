@@ -4,4 +4,8 @@ var Home = function () {
     this.opened = false;
     this.selected = false;
 
+    this.action = function () {
+        this.opened = !this.opened;
+    }
+
 };

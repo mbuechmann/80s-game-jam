@@ -9,6 +9,6 @@ var mainState = {
     },
 
     update: function () {
-        }
+    }
 
 };

@@ -6,11 +6,15 @@ var mainState = function (game) {
     var boardView = null;
     var homesViewsLeft = [];
     var homesViewsRight = [];
-    var lampViewLeft = null;
-    var lampViewRight = null;
+    var leftLampView = null;
+    var rightLampView = null;
 
     var leftPlayer = new Player();
-    var rightPlater = new Player();
+    var rightPlayer = new Player();
+
+    leftPlayer.active = true;
+    currentPlayer = leftPlayer;
+
 
     this.preload = function () {
         game.load.image('board-tile', 'images/board/tile.png');
@@ -32,11 +36,30 @@ var mainState = function (game) {
 
         for (var i = 0; i < 5; i++) {
             homesViewsLeft.push(new HomeView(game, 20, BOARD_TOP + i * (64 + PADDING), false, leftPlayer.homes[i]));
-            homesViewsRight.push(new HomeView(game, 616, BOARD_TOP + i * (64 + PADDING), true, rightPlater.homes[i]));
+            homesViewsRight.push(new HomeView(game, 616, BOARD_TOP + i * (64 + PADDING), true, rightPlayer.homes[i]));
         }
 
-        lampViewLeft = new LampView(game, 10, 20);
-        lampViewRight = new LampView(game, 554, 20);
+        leftLampView = new LampView(game, 10, 20, leftPlayer);
+        rightLampView = new LampView(game, 554, 20, rightPlayer);
+
+
+        game.input.keyboard.onUpCallback = function( e ){
+            if(e.keyCode == Phaser.Keyboard.UP) {
+                currentPlayer.up();
+            }
+            if(e.keyCode == Phaser.Keyboard.DOWN) {
+                currentPlayer.down();
+            }
+            if(e.keyCode == Phaser.Keyboard.LEFT) {
+                currentPlayer.left();
+            }
+            if(e.keyCode == Phaser.Keyboard.RIGHT) {
+                currentPlayer.right();
+            }
+            if(e.keyCode == Phaser.Keyboard.SPACEBAR) {
+                currentPlayer.action();
+            }
+        };
     };
 
     this.update = function () {
@@ -46,5 +69,9 @@ var mainState = function (game) {
         for (var i in homesViewsRight) {
             homesViewsRight[i].update();
         }
+
+        leftLampView.update();
+        rightLampView.update();
     };
+
 };

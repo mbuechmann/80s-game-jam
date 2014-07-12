@@ -30,6 +30,6 @@ var HomeView = function (game, x, y, flipped, home) {
         }
 
         selectedDoor.visible = home.selected;
-    }
+    };
 
 };

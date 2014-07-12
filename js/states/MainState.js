@@ -1,14 +1,17 @@
-var mainState = {
+var mainState = function (game) {
 
-    preload: function () {
+    var game = game;
+    var helloSprite = null;
+
+    this.preload = function () {
         game.load.image('awesome', 'images/awesome.png');
-    },
+    };
 
-    create: function () {
-        this.helloSprite = game.add.sprite(100, 100, 'awesome');
-    },
+    this.create = function () {
+        helloSprite = game.add.sprite(100, 100, 'awesome');
+    };
 
-    update: function () {
-    }
+    this.update = function () {
 
+    };
 };

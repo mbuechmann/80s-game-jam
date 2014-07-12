@@ -2,33 +2,34 @@ var Player = function () {
 
     var active = false;
 
-    var currentSelection = -1;
+    var currentSelection = 0;
+
+    this.selectables = [];
+    this.homes = [];
 
     this.lamp = new Lamp();
-    var lamp = this.lamp;
+    this.selectables.push(this.lamp);
 
-    this.homes = [];
     for (var i = 0; i < 5; i++) {
-        this.homes.push(new Home());
+        h = new Home();
+        this.selectables.push(h);
+        this.homes.push(h);
     }
-    var homes = this.homes;
+    var selectables = this.selectables;
 
     var setSelection = function (index) {
-        lamp.selected = (index === -1);
-        for (var i = 0; i < 5; i++) {
-            homes[i].selected = false;
+        for (var i = 0; i < 6; i++) {
+            selectables[i].selected = false;
         }
-        if (index > -1) {
-            homes[index].selected = true;
-        }
+        selectables[index].selected = true;
     };
 
     this.__defineSetter__('active', function (value) {
         active = value;
-        lamp.selected = active;
         for (var i = 0; i < 5; i++) {
-            this.homes[i].selected = false;
+            this.selectables[i].selected = false;
         }
+        this.lamp.selected = active;
     });
 
     this.__defineGetter__('active', function () {
@@ -37,13 +38,13 @@ var Player = function () {
 
     this.up = function () {
         currentSelection -= 1;
-        currentSelection = Math.max(-1, currentSelection);
+        currentSelection = Math.max(0, currentSelection);
         setSelection(currentSelection);
     };
 
     this.down = function () {
         currentSelection += 1;
-        currentSelection = Math.min(4, currentSelection);
+        currentSelection = Math.min(5, currentSelection);
         setSelection(currentSelection);
     };
 
@@ -54,8 +55,6 @@ var Player = function () {
     };
 
     this.action = function () {
-        if(currentSelection > -1) {
-            homes[currentSelection].action();
-        }
+        selectables[currentSelection].action();
     };
 };

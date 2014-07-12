@@ -26,15 +26,15 @@ var mainState = function (game) {
     };
 
     this.create = function () {
-        board = new Board(game, 116, BOARD_TOP, PADDING);
+        board = new BoardView(game, 116, BOARD_TOP, PADDING);
 
         for (var i = 0; i < 5; i++) {
-            homesLeft.push(new Home(game, 20, BOARD_TOP + i * (64 + PADDING), false));
-            homesRight.push(new Home(game, 616, BOARD_TOP + i * (64 + PADDING), true));
+            homesLeft.push(new HomeView(game, 20, BOARD_TOP + i * (64 + PADDING), false));
+            homesRight.push(new HomeView(game, 616, BOARD_TOP + i * (64 + PADDING), true));
         }
 
-        playerLampLeft = new PLayerLamp(game, 10, 20);
-        playerLampRight = new PLayerLamp(game, 554, 20);
+        playerLampLeft = new LampView(game, 10, 20);
+        playerLampRight = new LampView(game, 554, 20);
     };
 
     this.update = function () {

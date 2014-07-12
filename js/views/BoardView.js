@@ -1,4 +1,4 @@
-var Board = function (game, x, y, padding) {
+var BoardView = function (game, x, y, padding) {
 
     var tileSize = 64;
 

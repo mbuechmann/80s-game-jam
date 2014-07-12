@@ -1,4 +1,4 @@
-var PLayerLamp = function (game, x, y) {
+var LampView = function (game, x, y) {
 
     var group = game.add.group();
     group.x = x || 0;

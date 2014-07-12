@@ -1,4 +1,4 @@
-var Home = function (game, x, y, flipped) {
+var HomeView = function (game, x, y, flipped) {
     var group = game.add.group();
     group.x = x || 0;
     group.y = y || 0;

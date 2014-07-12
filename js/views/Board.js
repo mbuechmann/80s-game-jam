@@ -1,6 +1,5 @@
-var Board = function (game, x, y) {
+var Board = function (game, x, y, padding) {
 
-    const PADDING = 4;
     var tileSize = 64;
 
     var group = game.add.group();
@@ -9,9 +8,9 @@ var Board = function (game, x, y) {
     for (var i = 0; i < 6; i++) {
         for (var j = 0; j < 5; j++) {
             if ((i === 1 || i === 4) && (j === 1 || j === 3)) {
-                group.create(i * (PADDING + tileSize), j * (PADDING + tileSize), 'board-hole');
+                group.create(i * (padding + tileSize), j * (padding + tileSize), 'board-hole');
             } else {
-                group.create(i * (PADDING + tileSize), j * (PADDING + tileSize), 'board-tile');
+                group.create(i * (padding + tileSize), j * (padding + tileSize), 'board-tile');
             }
         }
     }

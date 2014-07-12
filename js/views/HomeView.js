@@ -7,10 +7,10 @@ var HomeView = function (game, x, y, flipped) {
         group.scale.set(-1, 1);
     }
 
-    group.create(20, 0, 'home-door-open');
+    group.create(20, 0, 'home-door-closed');
 
-    var closedDoor = group.create(20, 0, 'home-door-closed');
-    closedDoor.visible = false;
+    var opendDoor = group.create(20, 0, 'home-door-open');
+    opendDoor.visible = false;
 
     var selectedDoor = group.create(20, 0, 'home-door-selected');
     selectedDoor.visible = false;

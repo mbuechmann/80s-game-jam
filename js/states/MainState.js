@@ -1,14 +1,15 @@
 var mainState = function (game) {
 
     var game = game;
-    var helloSprite = null;
+    var board = null;
 
     this.preload = function () {
-        game.load.image('awesome', 'images/awesome.png');
+        game.load.image('board-tile', 'images/board/tile.png');
+        game.load.image('board-hole', 'images/board/hole.png');
     };
 
     this.create = function () {
-        helloSprite = game.add.sprite(100, 100, 'awesome');
+        board = new Board(game, 116, 90);
     };
 
     this.update = function () {

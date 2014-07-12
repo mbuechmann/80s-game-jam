@@ -12,6 +12,7 @@ var LampView = function (game, x, y, player) {
 
     this.update = function () {
         lampOn.visible = player.active;
+        selection.visible = player.lamp.selected;
     };
 
 };

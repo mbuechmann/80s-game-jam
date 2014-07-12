@@ -4,13 +4,17 @@ var Player = function () {
 
     var currentSelection = -1;
 
+    this.lamp = new Lamp();
+    var lamp = this.lamp;
+
     this.homes = [];
     for (var i = 0; i < 5; i++) {
         this.homes.push(new Home());
     }
     var homes = this.homes;
 
-    var selectHome = function (index) {
+    var setSelection = function (index) {
+        lamp.selected = (index === -1);
         for (var i = 0; i < 5; i++) {
             homes[i].selected = false;
         }
@@ -21,6 +25,7 @@ var Player = function () {
 
     this.__defineSetter__('active', function (value) {
         active = value;
+        lamp.selected = active;
         for (var i = 0; i < 5; i++) {
             this.homes[i].selected = false;
         }

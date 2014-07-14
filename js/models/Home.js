@@ -6,6 +6,11 @@ var Home = function () {
 
     this.action = function () {
         this.opened = !this.opened;
-    }
+    };
+
+    this.reset = function () {
+        this.opened = false;
+        this.selected = false;
+    };
 
 };

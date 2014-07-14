@@ -4,4 +4,8 @@ var Lamp = function () {
     this.action = function () {
 
     };
+
+    this.reset = function () {
+        this.selected = false
+    };
 };

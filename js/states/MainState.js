@@ -15,6 +15,15 @@ var mainState = function (game) {
     leftPlayer.active = true;
     currentPlayer = leftPlayer;
 
+    var switchPlayer = function () {
+        leftPlayer.active = !leftPlayer.active;
+        rightPlayer.active = !rightPlayer.active;
+        if(currentPlayer === leftPlayer) {
+            currentPlayer = rightPlayer;
+        } else {
+            currentPlayer = leftPlayer;
+        }
+    };
 
     this.preload = function () {
         game.load.image('board-tile', 'images/board/tile.png');
@@ -58,6 +67,9 @@ var mainState = function (game) {
             }
             if(e.keyCode == Phaser.Keyboard.SPACEBAR) {
                 currentPlayer.action();
+            }
+            if(e.keyCode == Phaser.Keyboard.ENTER) {
+                switchPlayer();
             }
         };
     };

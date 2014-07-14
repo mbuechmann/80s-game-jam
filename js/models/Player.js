@@ -26,8 +26,8 @@ var Player = function () {
 
     this.__defineSetter__('active', function (value) {
         active = value;
-        for (var i = 0; i < 5; i++) {
-            this.selectables[i].selected = false;
+        for (var i = 0; i < selectables.length; i++) {
+            this.selectables[i].reset();
         }
         this.lamp.selected = active;
     });

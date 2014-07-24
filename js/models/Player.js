@@ -1,8 +1,8 @@
 var Player = function () {
 
-    var active = false;
+    this.active = false;
 
-    var currentSelection = 0;
+    this.currentSelection = 0;
 
     this.selectables = [];
     this.homes = [];
@@ -11,50 +11,46 @@ var Player = function () {
     this.selectables.push(this.lamp);
 
     for (var i = 0; i < 5; i++) {
-        h = new Home();
+        var h = new Home();
         this.selectables.push(h);
         this.homes.push(h);
     }
-    var selectables = this.selectables;
+};
 
-    var setSelection = function (index) {
-        for (var i = 0; i < 6; i++) {
-            selectables[i].selected = false;
-        }
-        selectables[index].selected = true;
-    };
-
-    this.__defineSetter__('active', function (value) {
-        active = value;
-        for (var i = 0; i < selectables.length; i++) {
-            this.selectables[i].reset();
-        }
-        this.lamp.selected = active;
+Player.prototype.setSelection = function (index) {
+    this.selectables.forEach(function (selectable) {
+        selectable.selected = false;
     });
+    this.selectables[index].selected = true;
+};
 
-    this.__defineGetter__('active', function () {
-        return active;
+Player.prototype.up = function () {
+    this.currentSelection -= 1;
+    this.currentSelection = Math.max(0, this.currentSelection);
+    this.setSelection(this.currentSelection);
+};
+
+Player.prototype.down = function () {
+    this.currentSelection += 1;
+    this.currentSelection = Math.min(5, this.currentSelection);
+    this.setSelection(this.currentSelection);
+};
+
+Player.prototype.left = function () {
+};
+
+Player.prototype.right = function () {
+};
+
+Player.prototype.action = function () {
+    this.selectables[this.currentSelection].action();
+};
+
+Player.prototype.setActive = function (value) {
+    this.active = value;
+    this.selectables.forEach(function (selectable) {
+        selectable.reset();
     });
-
-    this.up = function () {
-        currentSelection -= 1;
-        currentSelection = Math.max(0, currentSelection);
-        setSelection(currentSelection);
-    };
-
-    this.down = function () {
-        currentSelection += 1;
-        currentSelection = Math.min(5, currentSelection);
-        setSelection(currentSelection);
-    };
-
-    this.left = function () {
-    };
-
-    this.right = function () {
-    };
-
-    this.action = function () {
-        selectables[currentSelection].action();
-    };
+    this.lamp.selected = value;
+    this.currentSelection = 0;
 };

@@ -1,11 +1,9 @@
 var Lamp = function () {
     this.selected = false;
+};
 
-    this.action = function () {
+Lamp.prototype.action = function () {};
 
-    };
-
-    this.reset = function () {
-        this.selected = false
-    };
+Lamp.prototype.reset = function () {
+    this.selected = false
 };

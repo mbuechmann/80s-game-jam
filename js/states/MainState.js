@@ -1,4 +1,4 @@
-var mainState = function (game) {
+var MainState = function (game) {
 
     const BOARD_TOP = 110;
     const PADDING = 4;
@@ -12,12 +12,12 @@ var mainState = function (game) {
     var leftPlayer = new Player();
     var rightPlayer = new Player();
 
-    leftPlayer.active = true;
-    currentPlayer = leftPlayer;
+    leftPlayer.setActive(true);
+    var currentPlayer = leftPlayer;
 
     var switchPlayer = function () {
-        leftPlayer.active = !leftPlayer.active;
-        rightPlayer.active = !rightPlayer.active;
+        leftPlayer.setActive(!leftPlayer.active);
+        rightPlayer.setActive(!rightPlayer.active);
         if(currentPlayer === leftPlayer) {
             currentPlayer = rightPlayer;
         } else {
@@ -75,12 +75,12 @@ var mainState = function (game) {
     };
 
     this.update = function () {
-        for (var i in homesViewsLeft) {
-            homesViewsLeft[i].update();
-        }
-        for (var i in homesViewsRight) {
-            homesViewsRight[i].update();
-        }
+        homesViewsLeft.forEach(function (homes) {
+            homes.update();
+        });
+        homesViewsRight.forEach(function (homes) {
+            homes.update();
+        });
 
         leftLampView.update();
         rightLampView.update();
